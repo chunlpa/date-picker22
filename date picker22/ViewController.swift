@@ -9,17 +9,32 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var picker1: UIDatePicker!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var NTP: UILabel!
+    var myTimer = Timer()
+    var count = 0
+    let interval = 1.0
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        myTimer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func picker1(_ sender: Any) {
+        print("change Date Picker")
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss a EE"
+        label.text = formatter.string(from: picker1.date)
+        
     }
-
-
+    @objc func updateTime() {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss EEE"
+        NTP.text = formatter.string(from: date as Date)
+    }
+    
 }
-
