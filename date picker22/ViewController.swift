@@ -42,18 +42,15 @@ class ViewController: UIViewController {
         NTP.text = formatter.string(from: date as Date)
         
         if label.text == NTP.text {
-            view.backgroundColor = UIColor.green
             let alertController = UIAlertController(title: "제목", message: "내용부분입니다.", preferredStyle: UIAlertControllerStyle.alert)
             
-            let DestructiveAction = UIAlertAction(title: "취소", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+            let DestructiveAction = UIAlertAction(title: "취소", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in self.view.backgroundColor = UIColor.green
                 
-                print("취소")
                 
             }
             
             let okAction = UIAlertAction(title: "확인", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-                
-                print("확인")
+                self.view.backgroundColor = UIColor.blue
                 
             }
             
